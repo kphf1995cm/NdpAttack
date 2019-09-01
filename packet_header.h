@@ -81,6 +81,11 @@ typedef struct in6_addr {
 } IN6_ADDR, *PIN6_ADDR, FAR *LPIN6_ADDR;
 # endif
 
+typedef struct ipv6Addr_t
+{
+    uint8_t	addr8[16];
+}ipv6_addr;
+
 typedef struct tagIPv6Header_t
 {
     union
@@ -103,8 +108,8 @@ typedef struct tagIPv6Header_t
 #define ip6_hlim             ip6_ctlun.ip6_unl.ip6_unl_hlim
 #define ip6_hops             ip6_ctlun.ip6_unl.ip6_unl_hops
 
-    struct in6_addr ip6_src;/* 发送端地址 */
-    struct in6_addr ip6_dst;/* 接收端地址 */
+    ipv6_addr ip6_src;/* 发送端地址 */
+    ipv6_addr ip6_dst;/* 接收端地址 */
 }IPv6Header_t;
 
 //ICMPv6
@@ -114,8 +119,10 @@ typedef struct tagICMPv6Header_t
   u_int8 code;
   u_int16 checksum;
   u_int32 reserved;
-  struct in6_addr target_address;
-
+  ipv6_addr target_address;
+  // 24 bytes
+  u_int64 options;
+  // 32 bytes
 } ICMPv6Header_t;
 
 
