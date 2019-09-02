@@ -112,6 +112,15 @@ typedef struct tagIPv6Header_t
     ipv6_addr ip6_dst;/* 接收端地址 */
 }IPv6Header_t;
 
+typedef struct IPv6PseudoHeader_t{ // 16+16+4+2+1+1=40
+    ipv6_addr ip6_src;
+    ipv6_addr ip6_dst;
+    u_int32 ip6_pkt_len;
+    u_int16 zero16;
+    u_int8 zero8;
+    u_int8 ip6_nxt_header;
+} IPv6PseudoHeader;
+
 //ICMPv6
 typedef struct tagICMPv6Header_t
 {
